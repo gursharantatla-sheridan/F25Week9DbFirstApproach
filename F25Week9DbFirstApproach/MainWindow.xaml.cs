@@ -91,5 +91,32 @@ namespace F25Week9DbFirstApproach
             LoadStudents();
             MessageBox.Show("Student updated");
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            int id = Convert.ToInt32(txtId.Text);
+            var std = db.Students.Find(id);
+
+            db.Students.Remove(std);
+            db.SaveChanges();
+
+            LoadStudents();
+            MessageBox.Show("Student deleted");
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            // query syntax
+            //var students = (from s in db.Students
+            //                where s.StudentName.Contains(txtName.Text)
+            //                select s).ToList();
+
+            // method syntax
+            var students = db.Students
+                             .Where(s => s.StudentName.Contains(txtName.Text))
+                             .ToList();
+
+            grdStudents.ItemsSource = students;
+        }
     }
 }
