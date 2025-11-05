@@ -80,7 +80,16 @@ namespace F25Week9DbFirstApproach
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            int id = Convert.ToInt32(txtId.Text);
+            var std = db.Students.Find(id);
 
+            std.StudentName = txtName.Text;
+            std.StandardId = (int)cmbStandard.SelectedValue;
+
+            db.SaveChanges();
+
+            LoadStudents();
+            MessageBox.Show("Student updated");
         }
     }
 }
