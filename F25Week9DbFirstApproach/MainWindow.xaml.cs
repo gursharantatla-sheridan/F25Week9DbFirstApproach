@@ -64,5 +64,23 @@ namespace F25Week9DbFirstApproach
                 MessageBox.Show("Invalid ID. Please try again");
             }
         }
+
+        private void btnInsert_Click(object sender, RoutedEventArgs e)
+        {
+            Student std = new Student();
+            std.StudentName = txtName.Text;
+            std.StandardId = (int)cmbStandard.SelectedValue;
+
+            db.Students.Add(std);
+            db.SaveChanges();
+
+            LoadStudents();
+            MessageBox.Show("New student added");
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
