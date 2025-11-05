@@ -29,7 +29,15 @@ namespace F25Week9DbFirstApproach
 
         private void LoadStudents()
         {
-            var students = db.Students.ToList();
+            // query syntax
+            //var students = (from s in db.Students
+            //                select new {s.StudentID, s.StudentName, s.Standard.StandardName}).ToList();
+
+            // method syntax
+            var students = db.Students
+                             .Select(s => new { s.StudentID, s.StudentName, s.Standard.StandardName })
+                             .ToList();
+
             grdStudents.ItemsSource = students;
         }
 
